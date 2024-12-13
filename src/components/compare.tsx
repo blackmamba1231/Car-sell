@@ -1,20 +1,26 @@
+"use client";
+
 import { useState } from "react";
 import { Plus, Search } from "lucide-react";
 
+type Car = {
+  name: string;
+};
+
 export default function AddToCompare() {
-  const [compareList, setCompareList] = useState<any[]>([]);
+  const [compareList, setCompareList] = useState<Car[]>([]);
   const [isCompareBoxOpen, setIsCompareBoxOpen] = useState(false);
   const [showSearch, setShowSearch] = useState<number | null>(null);
   const [carSearch, setCarSearch] = useState("");
 
-  const availableCars = [
+  const availableCars: Car[] = [
     { name: "Car Model A" },
     { name: "Car Model B" },
     { name: "Car Model C" },
     { name: "Car Model D" },
-  ]; // Replace with actual car data.
+  ];
 
-  const handleAddCar = (car: any) => {
+  const handleAddCar = (car: Car) => {
     if (compareList.length < 3) {
       setCompareList([...compareList, car]);
       setShowSearch(null); // Close the search box after adding.
@@ -23,7 +29,7 @@ export default function AddToCompare() {
     }
   };
 
-  const handleRemoveCar = (car: any) => {
+  const handleRemoveCar = (car: Car) => {
     setCompareList(compareList.filter((item) => item !== car));
   };
 
